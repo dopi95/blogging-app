@@ -14,10 +14,11 @@ export default function Navbar() {
   const [open, setOpen] = useState(false);
 
   return (
-    <header className="sticky top-0 z-50 bg-white border-b border-gray-100 shadow-sm">
+    <header className="sticky top-0 z-50 bg-white border-b border-orange-100 shadow-sm">
       <div className="max-w-5xl mx-auto px-4 flex items-center justify-between h-16">
-        <Link href="/" className="text-xl font-bold text-indigo-600 tracking-tight">
-          Inkwell
+        <Link href="/" className="flex items-center gap-2">
+          <span className="w-7 h-7 rounded-lg bg-orange-500 flex items-center justify-center text-white text-xs font-bold">B</span>
+          <span className="text-lg font-bold text-gray-900 tracking-tight">Blogging App</span>
         </Link>
 
         {/* Desktop nav */}
@@ -28,7 +29,7 @@ export default function Navbar() {
               href={href}
               className={`text-sm font-medium transition-colors ${
                 pathname === href
-                  ? "text-indigo-600"
+                  ? "text-orange-500"
                   : "text-gray-500 hover:text-gray-900"
               }`}
             >
@@ -39,7 +40,7 @@ export default function Navbar() {
 
         {/* Mobile hamburger */}
         <button
-          className="sm:hidden p-2 rounded-md text-gray-500 hover:text-gray-900 hover:bg-gray-100"
+          className="sm:hidden p-2 rounded-md text-gray-500 hover:bg-orange-50"
           onClick={() => setOpen(!open)}
           aria-label="Toggle menu"
         >
@@ -55,9 +56,8 @@ export default function Navbar() {
         </button>
       </div>
 
-      {/* Mobile menu */}
       {open && (
-        <nav className="sm:hidden border-t border-gray-100 bg-white px-4 py-3 flex flex-col gap-3">
+        <nav className="sm:hidden border-t border-orange-50 bg-white px-4 py-3 flex flex-col gap-3">
           {links.map(({ href, label }) => (
             <Link
               key={href}
@@ -65,7 +65,7 @@ export default function Navbar() {
               onClick={() => setOpen(false)}
               className={`text-sm font-medium transition-colors ${
                 pathname === href
-                  ? "text-indigo-600"
+                  ? "text-orange-500"
                   : "text-gray-500 hover:text-gray-900"
               }`}
             >

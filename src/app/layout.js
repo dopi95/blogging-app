@@ -3,8 +3,8 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 
 export const metadata = {
-  title: "Inkwell — A Modern Blogging App",
-  description: "Thoughts, tutorials, and ideas on web development.",
+  title: "Blogging App",
+  description: "Tutorials and thoughts on web development, written by real developers.",
 };
 
 export default function RootLayout({ children }) {
