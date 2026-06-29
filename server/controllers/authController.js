@@ -1,5 +1,6 @@
 const jwt = require("jsonwebtoken");
 const User = require("../models/User");
+const Post = require("../models/Post");
 
 function signToken(id) {
   return jwt.sign({ id }, process.env.JWT_SECRET, { expiresIn: "7d" });
@@ -44,4 +45,14 @@ const getMe = async (req, res) => {
   res.json(req.user);
 };
 
-module.exports = { register, login, getMe };
+const getAuthors = async (req, res) => {
+  try {
+    const authorIds = await Post.distinct("author");
+    const users = await User.find({ _id: { $in: authorIds } }).select("username createdAt");
+    res.json(users);
+  } catch (err) {
+    res.status(500).json({ message: err.message });
+  }
+};
+
+module.exports = { register, login, getMe, getAuthors };
