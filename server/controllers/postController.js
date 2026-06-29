@@ -3,6 +3,7 @@ const Post = require("../models/Post");
 const populate = (q) =>
   q
     .populate("author", "username")
+    .populate("likes", "username")
     .populate("comments.author", "username")
     .populate("comments.replies.author", "username");
 
@@ -67,7 +68,7 @@ const likePost = async (req, res) => {
   try {
     const post = await Post.findOne({ slug: req.params.slug });
     if (!post) return res.status(404).json({ message: "Post not found" });
-    const idx = post.likes.indexOf(req.user._id);
+    const idx = post.likes.findIndex((id) => id.toString() === req.user._id.toString());
     if (idx === -1) post.likes.push(req.user._id);
     else post.likes.splice(idx, 1);
     await post.save();
