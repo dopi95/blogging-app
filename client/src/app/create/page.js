@@ -54,7 +54,7 @@ export default function CreatePost() {
     { name: "slug", label: "Slug" },
     { name: "excerpt", label: "Excerpt" },
     { name: "coverImage", label: "Cover Image URL" },
-    { name: "tags", label: "Tags (comma separated)" },
+    { name: "tags", label: "Category (e.g. Technology, Food, Travel)" },
   ];
 
   return (
@@ -93,7 +93,7 @@ export default function CreatePost() {
         <button
           type="submit"
           disabled={submitting}
-          className="w-full py-3 bg-orange-500 hover:bg-orange-600 disabled:opacity-50 text-white font-bold rounded-xl transition active:scale-95"
+          className="cursor-pointer w-full py-3 bg-orange-500 hover:bg-orange-600 disabled:opacity-50 text-white font-bold rounded-xl transition active:scale-95"
         >
           {submitting ? "Publishing..." : "Publish Post"}
         </button>

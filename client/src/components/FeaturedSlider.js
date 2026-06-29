@@ -78,7 +78,7 @@ export default function FeaturedSlider({ posts }) {
           <button
             key={i}
             onClick={() => goTo(i)}
-            className={`rounded-full transition-all duration-300 ${
+            className={`cursor-pointer rounded-full transition-all duration-300 ${
               i === current ? "w-5 h-2 bg-orange-500" : "w-2 h-2 bg-white/40 hover:bg-white/70"
             }`}
           />

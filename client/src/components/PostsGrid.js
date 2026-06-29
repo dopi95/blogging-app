@@ -16,7 +16,7 @@ export default function PostsGrid({ posts, categories }) {
           <button
             key={cat}
             onClick={() => setActive(cat)}
-            className={`shrink-0 px-4 py-1.5 rounded-full text-sm font-medium transition-all duration-200 ${
+            className={`cursor-pointer shrink-0 px-4 py-1.5 rounded-full text-sm font-medium transition-all duration-200 ${
               active === cat
                 ? "bg-orange-500 text-white shadow-sm shadow-orange-200"
                 : "bg-white text-gray-500 border border-gray-200 hover:border-orange-300 hover:text-orange-500"

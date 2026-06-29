@@ -178,10 +178,10 @@ export default function PostDetail({ post: initial }) {
 
           {isAuthor && (
             <div className="flex items-center gap-2 ml-auto">
-              <button onClick={() => router.push(`/edit/${post.slug}`)} className="px-3 py-1.5 text-xs font-bold text-orange-500 border border-orange-200 rounded-xl hover:bg-orange-50 transition">
+              <button onClick={() => router.push(`/edit/${post.slug}`)} className="cursor-pointer px-3 py-1.5 text-xs font-bold text-orange-500 border border-orange-200 rounded-xl hover:bg-orange-50 transition">
                 Edit
               </button>
-              <button onClick={handleDelete} disabled={deleting} className="px-3 py-1.5 text-xs font-bold text-red-500 border border-red-200 rounded-xl hover:bg-red-50 disabled:opacity-50 transition">
+              <button onClick={handleDelete} disabled={deleting} className="cursor-pointer px-3 py-1.5 text-xs font-bold text-red-500 border border-red-200 rounded-xl hover:bg-red-50 disabled:opacity-50 transition">
                 {deleting ? "Deleting..." : "Delete"}
               </button>
             </div>
@@ -190,7 +190,7 @@ export default function PostDetail({ post: initial }) {
 
         {/* Likes row */}
         {likeCount > 0 && (
-          <button onClick={() => setShowLikers(true)} className="mt-3 flex items-center gap-2 hover:opacity-80 transition focus:outline-none cursor-pointer">
+          <button onClick={() => setShowLikers(true)} className="cursor-pointer mt-3 flex items-center gap-2 hover:opacity-80 transition focus:outline-none">
             <div className="flex -space-x-2">
               {likerNames.slice(0, 4).map((name, i) => (
                 <div key={i} className={`w-6 h-6 rounded-full border-2 border-white flex items-center justify-center text-[9px] font-bold ${getColor(name)}`}>
@@ -233,7 +233,7 @@ export default function PostDetail({ post: initial }) {
                       <span className="text-sm text-gray-700 leading-relaxed">{c.text}</span>
                     </div>
                     {user && (c.author?._id === user._id || isAuthor) && (
-                      <button onClick={() => deleteComment(c._id)} className="text-[11px] text-red-400 hover:text-red-600 shrink-0 mt-0.5 cursor-pointer">Delete</button>
+                      <button onClick={() => deleteComment(c._id)} className="cursor-pointer text-[11px] text-red-400 hover:text-red-600 shrink-0 mt-0.5">Delete</button>
                     )}
                   </div>
                   <div className="flex items-center gap-4 mt-1">
@@ -241,7 +241,7 @@ export default function PostDetail({ post: initial }) {
                       {new Date(c.createdAt).toLocaleDateString("en-US", { month: "short", day: "numeric" })}
                     </span>
                     {user && (
-                      <button onClick={() => setReplyTo(replyTo === c._id ? null : c._id)} className="text-[11px] font-bold text-gray-400 hover:text-orange-500 transition-colors cursor-pointer">
+                      <button onClick={() => setReplyTo(replyTo === c._id ? null : c._id)} className="cursor-pointer text-[11px] font-bold text-gray-400 hover:text-orange-500 transition-colors">
                         Reply
                       </button>
                     )}
@@ -272,7 +272,7 @@ export default function PostDetail({ post: initial }) {
                         onChange={(e) => setReplyText(e.target.value)}
                         className="flex-1 px-3 py-2 rounded-xl border border-gray-200 text-xs placeholder-gray-400 focus:outline-none focus:border-orange-400 focus:ring-2 focus:ring-orange-100 transition"
                       />
-                      <button type="submit" disabled={!replyText.trim() || submitting} className="px-4 py-2 bg-orange-500 hover:bg-orange-600 disabled:opacity-40 text-white text-xs font-bold rounded-xl transition">
+                <button type="submit" disabled={!replyText.trim() || submitting} className="cursor-pointer px-4 py-2 bg-orange-500 hover:bg-orange-600 disabled:opacity-40 text-white text-xs font-bold rounded-xl transition">
                         Post
                       </button>
                     </form>
@@ -295,7 +295,7 @@ export default function PostDetail({ post: initial }) {
                   onChange={(e) => setCommentText(e.target.value)}
                   className="flex-1 px-4 py-2.5 rounded-xl border border-gray-200 text-sm placeholder-gray-400 focus:outline-none focus:border-orange-400 focus:ring-2 focus:ring-orange-100 transition bg-gray-50 focus:bg-white"
                 />
-                <button type="submit" disabled={!commentText.trim() || submitting} className="text-sm font-bold text-orange-500 hover:text-orange-600 disabled:opacity-30 transition">
+                <button type="submit" disabled={!commentText.trim() || submitting} className="cursor-pointer text-sm font-bold text-orange-500 hover:text-orange-600 disabled:opacity-30 transition">
                   Post
                 </button>
               </div>

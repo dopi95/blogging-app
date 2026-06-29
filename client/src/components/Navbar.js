@@ -53,7 +53,7 @@ export default function Navbar() {
               <span className="text-sm font-semibold text-gray-700">{user.username}</span>
               <button
                 onClick={handleLogout}
-                className="text-sm font-medium text-red-500 hover:text-red-600 transition"
+                className="cursor-pointer text-sm font-medium text-red-500 hover:text-red-600 transition"
               >
                 Logout
               </button>
@@ -72,7 +72,7 @@ export default function Navbar() {
 
         {/* Mobile hamburger */}
         <button
-          className="sm:hidden p-2 rounded-md text-gray-500 hover:bg-orange-50"
+          className="cursor-pointer sm:hidden p-2 rounded-md text-gray-500 hover:bg-orange-50"
           onClick={() => setOpen(!open)}
           aria-label="Toggle menu"
         >
@@ -105,7 +105,7 @@ export default function Navbar() {
           {user ? (
             <>
               <span className="text-sm font-semibold text-gray-700">{user.username}</span>
-              <button onClick={handleLogout} className="text-sm font-medium text-red-500 text-left">Logout</button>
+              <button onClick={handleLogout} className="cursor-pointer text-sm font-medium text-red-500 text-left">Logout</button>
             </>
           ) : (
             <>
