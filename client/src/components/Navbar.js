@@ -1,17 +1,30 @@
 "use client";
 
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { useState } from "react";
-
-const links = [
-  { href: "/", label: "Home" },
-  { href: "/about", label: "About" },
-];
+import { useAuth } from "@/context/AuthContext";
 
 export default function Navbar() {
   const pathname = usePathname();
+  const router = useRouter();
+  const { user, logout } = useAuth();
   const [open, setOpen] = useState(false);
+
+  function handleLogout() {
+    logout();
+    router.push("/");
+    setOpen(false);
+  }
+
+  const baseLinks = [
+    { href: "/", label: "Home" },
+    { href: "/about", label: "About" },
+  ];
+  const authLinks = user
+    ? [{ href: "/create", label: "Create Post" }]
+    : [];
+  const links = [...baseLinks, ...authLinks];
 
   return (
     <header className="sticky top-0 z-50 bg-white border-b border-orange-100 shadow-sm">
@@ -28,14 +41,33 @@ export default function Navbar() {
               key={href}
               href={href}
               className={`text-sm font-medium transition-colors ${
-                pathname === href
-                  ? "text-orange-500"
-                  : "text-gray-500 hover:text-gray-900"
+                pathname === href ? "text-orange-500" : "text-gray-500 hover:text-gray-900"
               }`}
             >
               {label}
             </Link>
           ))}
+
+          {user ? (
+            <div className="flex items-center gap-3">
+              <span className="text-sm font-semibold text-gray-700">{user.username}</span>
+              <button
+                onClick={handleLogout}
+                className="text-sm font-medium text-red-500 hover:text-red-600 transition"
+              >
+                Logout
+              </button>
+            </div>
+          ) : (
+            <div className="flex items-center gap-3">
+              <Link href="/login" className="text-sm font-medium text-gray-500 hover:text-gray-900 transition">
+                Log in
+              </Link>
+              <Link href="/signup" className="text-sm font-bold bg-orange-500 hover:bg-orange-600 text-white px-4 py-1.5 rounded-xl transition">
+                Sign up
+              </Link>
+            </div>
+          )}
         </nav>
 
         {/* Mobile hamburger */}
@@ -64,14 +96,23 @@ export default function Navbar() {
               href={href}
               onClick={() => setOpen(false)}
               className={`text-sm font-medium transition-colors ${
-                pathname === href
-                  ? "text-orange-500"
-                  : "text-gray-500 hover:text-gray-900"
+                pathname === href ? "text-orange-500" : "text-gray-500 hover:text-gray-900"
               }`}
             >
               {label}
             </Link>
           ))}
+          {user ? (
+            <>
+              <span className="text-sm font-semibold text-gray-700">{user.username}</span>
+              <button onClick={handleLogout} className="text-sm font-medium text-red-500 text-left">Logout</button>
+            </>
+          ) : (
+            <>
+              <Link href="/login" onClick={() => setOpen(false)} className="text-sm font-medium text-gray-500">Log in</Link>
+              <Link href="/signup" onClick={() => setOpen(false)} className="text-sm font-bold text-orange-500">Sign up</Link>
+            </>
+          )}
         </nav>
       )}
     </header>

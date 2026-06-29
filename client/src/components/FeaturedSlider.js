@@ -31,7 +31,7 @@ export default function FeaturedSlider({ posts }) {
         className={`relative w-full h-64 sm:h-96 transition-opacity duration-300 ${animating ? "opacity-0" : "opacity-100"}`}
       >
         <Image
-          src={post.image}
+          src={post.coverImage || "https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?w=800"}
           alt={post.title}
           fill
           className="object-cover"
@@ -44,9 +44,9 @@ export default function FeaturedSlider({ posts }) {
       <div className={`absolute bottom-0 left-0 right-0 p-6 sm:p-8 transition-all duration-300 ${animating ? "opacity-0 translate-y-2" : "opacity-100 translate-y-0"}`}>
         <div className="flex items-center gap-2 mb-3">
           <span className="text-xs font-semibold bg-orange-500 text-white px-2.5 py-1 rounded-full">
-            {post.category}
+            {post.tags?.[0] || "General"}
           </span>
-          <span className="text-xs text-gray-300">{post.readTime}</span>
+          <span className="text-xs text-gray-300">{post.readTime || ""}</span>
         </div>
         <Link href={`/blog/${post.slug}`}>
           <h2 className="text-xl sm:text-2xl font-bold text-white leading-snug hover:text-orange-300 transition-colors mb-3 max-w-xl">
@@ -56,9 +56,9 @@ export default function FeaturedSlider({ posts }) {
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-2">
             <div className="w-7 h-7 rounded-full bg-orange-500 flex items-center justify-center text-white text-xs font-bold">
-              {post.author[0]}
+              {(post.author?.username || "?")[0].toUpperCase()}
             </div>
-            <span className="text-sm text-gray-300">{post.author}</span>
+            <span className="text-sm text-gray-300">{post.author?.username || "Anonymous"}</span>
           </div>
           <Link
             href={`/blog/${post.slug}`}
