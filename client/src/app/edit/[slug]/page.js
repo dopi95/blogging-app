@@ -13,7 +13,7 @@ export default function EditPost() {
   const [submitting, setSubmitting] = useState(false);
   const [error, setError] = useState("");
   const [form, setForm] = useState({
-    title: "", slug: "", content: "", excerpt: "", coverImage: "", tags: "",
+    title: "", slug: "", content: "", excerpt: "", coverImage: "", category: "",
   });
 
   useEffect(() => {
@@ -29,7 +29,7 @@ export default function EditPost() {
           content: data.content || "",
           excerpt: data.excerpt || "",
           coverImage: data.coverImage || "",
-          tags: (data.tags || []).join(", "),
+          category: data.category || "",
         });
         setFetching(false);
       })
@@ -49,7 +49,7 @@ export default function EditPost() {
       const data = await apiFetch(`/posts/${slug}`, {
         method: "PUT",
         token: user.token,
-        body: { ...form, tags: form.tags.split(",").map((t) => t.trim()).filter(Boolean) },
+        body: { ...form },
       });
       router.push(`/blog/${data.slug}`);
     } catch (err) {
@@ -66,7 +66,7 @@ export default function EditPost() {
     { name: "slug", label: "Slug" },
     { name: "excerpt", label: "Excerpt" },
     { name: "coverImage", label: "Cover Image URL" },
-    { name: "tags", label: "Category (e.g. Technology, Food, Travel)" },
+    { name: "category", label: "Category (e.g. Technology, Food, Travel)" },
   ];
 
   return (

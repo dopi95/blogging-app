@@ -20,7 +20,7 @@ const postSchema = new mongoose.Schema(
     excerpt: { type: String },
     coverImage: { type: String },
     author: { type: mongoose.Schema.Types.ObjectId, ref: "User", required: true },
-    tags: [String],
+    category: { type: String, default: "General" },
     likes: [{ type: mongoose.Schema.Types.ObjectId, ref: "User" }],
     comments: [commentSchema],
   },

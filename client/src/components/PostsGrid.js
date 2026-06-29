@@ -6,7 +6,7 @@ import PostCard from "./PostCard";
 export default function PostsGrid({ posts, categories }) {
   const [active, setActive] = useState("All");
 
-  const filtered = active === "All" ? posts : posts.filter((p) => p.tags?.includes(active));
+  const filtered = active === "All" ? posts : posts.filter((p) => p.category === active);
 
   return (
     <section>

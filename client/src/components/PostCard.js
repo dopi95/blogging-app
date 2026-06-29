@@ -67,7 +67,7 @@ export default function PostCard({ post: initial, index = 0 }) {
           sizes="(max-width: 768px) 100vw, 50vw"
         />
         <span className="absolute top-3 left-3 text-xs font-semibold bg-orange-500 text-white px-2.5 py-1 rounded-full shadow-sm">
-          {initial.tags?.[0] || "General"}
+          {initial.category || "General"}
         </span>
       </Link>
 

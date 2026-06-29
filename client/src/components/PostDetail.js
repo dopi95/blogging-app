@@ -153,7 +153,7 @@ export default function PostDetail({ post: initial }) {
             </p>
           </div>
           <span className="text-xs font-semibold bg-orange-500 text-white px-3 py-1 rounded-full shrink-0">
-            {post.tags?.[0] || "General"}
+            {post.category || "General"}
           </span>
         </div>
 

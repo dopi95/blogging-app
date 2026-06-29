@@ -13,7 +13,7 @@ async function getPosts() {
 
 export default async function Home() {
   const posts = await getPosts();
-  const categories = ["All", ...new Set(posts.flatMap((p) => p.tags || []).filter(Boolean))];
+  const categories = ["All", ...new Set(posts.map((p) => p.category).filter(Boolean))];
 
   return (
     <div className="max-w-5xl mx-auto px-4 py-10">
